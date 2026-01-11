@@ -1,0 +1,53 @@
+services:
+  mlops-env:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - USERNAME=dev
+        - USER_UID=${HOST_UID:-1000}
+        - USER_GID=${HOST_GID:-1000}
+    image: pde-mlops:latest
+    container_name: mlops-env
+    hostname: mlops-env
+    stdin_open: true
+    tty: true
+
+    # GPU (uncomment on Linux/WSL2 with NVIDIA)
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]
+
+    volumes:
+      - ./workspace:/workspace
+      - ${HOST_PROJECTS_PATH:-~/Desktop}:/projects
+      - nvim_data:/home/dev/.local/share/nvim
+      - ssh_keys:/etc/ssh
+      - ~/.ssh:/home/dev/.ssh:ro
+
+    environment:
+      - TERM=xterm-256color
+      - COLORTERM=truecolor
+      - HOST_UID=${HOST_UID:-1000}
+      - HOST_GID=${HOST_GID:-1000}
+      - START_SSHD=${START_SSHD:-true}
+
+    ports:
+      - "127.0.0.1:${SSH_PORT:-2222}:22"
+      - "127.0.0.1:${JUPYTER_PORT:-8888}:8888"
+
+    networks:
+      - pde-network
+    restart: unless-stopped
+
+volumes:
+  nvim_data:
+  ssh_keys:
+
+networks:
+  pde-network:
+    driver: bridge
