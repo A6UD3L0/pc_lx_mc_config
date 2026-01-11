@@ -58,7 +58,8 @@ RUN /opt/uv/uv python install 3.11 && \
     /opt/uv/uv venv $VIRTUAL_ENV --python 3.11 && \
     /opt/uv/uv pip install --python $VIRTUAL_ENV/bin/python \
     pynvim jupyter_client ipykernel jupyterlab jupyter-console ipywidgets cairosvg matplotlib \
-    basedpyright kedro dvc torch numpy pandas scikit-learn ruff tmuxp
+    basedpyright kedro dvc torch numpy pandas scikit-learn ruff tmuxp \
+    mlflow tensorboard wandb
 
 RUN python -m ipykernel install --name "pde-kernel" --display-name "PDE Python 3.11"
 

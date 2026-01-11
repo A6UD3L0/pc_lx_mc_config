@@ -18,16 +18,16 @@ windows:
       - shell_command: "dvc version; zsh"
       - shell_command: "kedro --version; zsh"
 
-  # Window 3: Jupyter Console (alternative to Molten)
-  # - Top: Interactive Python with Jupyter
-  # - Bottom: Shell for quick commands
-  - window_name: Jupyter
-    layout: main-horizontal
-    options:
-      main-pane-height: 70%
+  # Window 3: Experiment Tracking
+  # - Left: MLflow UI (run: mlflow ui)
+  # - Middle: TensorBoard (run: tensorboard --logdir=logs)
+  # - Right: Shell for W&B / commands
+  - window_name: Experiments
+    layout: even-horizontal
     panes:
-      - shell_command: "jupyter console --kernel=pde-kernel"
-      - shell_command: "zsh"
+      - shell_command: "echo '=== MLflow ===' && echo 'Start: mlflow ui --port 5000' && echo 'Track: mlflow.log_param() / log_metric()' && zsh"
+      - shell_command: "echo '=== TensorBoard ===' && echo 'Start: tensorboard --logdir=logs --port 6006' && echo 'View: http://localhost:6006' && zsh"
+      - shell_command: "echo '=== Weights & Biases ===' && echo 'Login: wandb login' && echo 'Init: wandb.init(project=\"my-project\")' && zsh"
 
   # Window 4: Git version control
   # - Lazygit TUI for all git operations
