@@ -1,7 +1,16 @@
 #!/bin/bash
 # =============================================================================
 # Portable ML Lab - Quick Start Script
-# Usage: ./start.sh [project_path]
+# 
+# Usage:
+#   ./start.sh                     # Use path from .env or default
+#   ./start.sh /path/to/project    # Open specific project folder
+#   ./start.sh ~/my-ml-project     # Supports ~ expansion
+#
+# Examples:
+#   ./start.sh ~/Desktop/my-project
+#   ./start.sh /Users/john/code/ml-experiment
+#   ./start.sh C:/Users/john/projects  # Windows Git Bash
 # =============================================================================
 
 set -e
@@ -12,6 +21,20 @@ export MSYS2_ARG_CONV_EXCL="*"
 
 PROJECT_PATH="${1:-}"
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+# Show help
+if [ "$PROJECT_PATH" = "-h" ] || [ "$PROJECT_PATH" = "--help" ]; then
+    echo "Usage: ./start.sh [project_path]"
+    echo ""
+    echo "Arguments:"
+    echo "  project_path    Path to your project folder (mounted as /projects)"
+    echo ""
+    echo "Examples:"
+    echo "  ./start.sh ~/Desktop/my-project"
+    echo "  ./start.sh /home/user/ml-experiments"
+    echo ""
+    exit 0
+fi
 
 # Check Docker prerequisites
 if ! command -v docker &> /dev/null; then
@@ -25,6 +48,14 @@ if ! docker info &> /dev/null; then
 fi
 
 cd "$SCRIPT_DIR"
+
+# Create .env from example if it doesn't exist
+if [ ! -f .env ]; then
+    if [ -f .env.example ]; then
+        cp .env.example .env
+        echo "Created .env from .env.example"
+    fi
+fi
 
 # Colors
 GREEN='\033[0;32m'
@@ -41,24 +72,38 @@ if [ -n "$PROJECT_PATH" ]; then
     # Expand ~ to full path
     PROJECT_PATH="${PROJECT_PATH/#\~/$HOME}"
     
+    # Convert to absolute path if relative
+    if [[ "$PROJECT_PATH" != /* ]]; then
+        PROJECT_PATH="$(cd "$PROJECT_PATH" 2>/dev/null && pwd)" || PROJECT_PATH="$(pwd)/$PROJECT_PATH"
+    fi
+    
     if [ -d "$PROJECT_PATH" ]; then
         echo -e "${GREEN}📁 Project path: $PROJECT_PATH${NC}"
-        
-        # Update .env file
-        if grep -q "HOST_PROJECTS_PATH" .env 2>/dev/null; then
-            # Cross-platform sed (works on both GNU and BSD sed)
-            if [[ "$OSTYPE" == "darwin"* ]]; then
-                sed -i '' "s|HOST_PROJECTS_PATH=.*|HOST_PROJECTS_PATH=$PROJECT_PATH|" .env
-            else
-                sed -i "s|HOST_PROJECTS_PATH=.*|HOST_PROJECTS_PATH=$PROJECT_PATH|" .env
-            fi
-        else
-            echo "HOST_PROJECTS_PATH=$PROJECT_PATH" >> .env
-        fi
     else
         echo -e "${YELLOW}⚠️  Directory not found: $PROJECT_PATH${NC}"
         echo "Creating directory..."
         mkdir -p "$PROJECT_PATH"
+        echo -e "${GREEN}📁 Created: $PROJECT_PATH${NC}"
+    fi
+    
+    # Update .env file
+    if grep -q "HOST_PROJECTS_PATH" .env 2>/dev/null; then
+        # Cross-platform sed (works on both GNU and BSD sed)
+        if [[ "$OSTYPE" == "darwin"* ]]; then
+            sed -i '' "s|HOST_PROJECTS_PATH=.*|HOST_PROJECTS_PATH=$PROJECT_PATH|" .env
+        else
+            sed -i "s|HOST_PROJECTS_PATH=.*|HOST_PROJECTS_PATH=$PROJECT_PATH|" .env
+        fi
+    else
+        echo "HOST_PROJECTS_PATH=$PROJECT_PATH" >> .env
+    fi
+else
+    # Show current project path from .env
+    if [ -f .env ]; then
+        CURRENT_PATH=$(grep "HOST_PROJECTS_PATH" .env 2>/dev/null | cut -d'=' -f2)
+        if [ -n "$CURRENT_PATH" ]; then
+            echo -e "${GREEN}📁 Project path: $CURRENT_PATH${NC}"
+        fi
     fi
 fi
 

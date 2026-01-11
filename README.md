@@ -5,9 +5,9 @@ All configs are **baked into the Docker image** - no setup required.
 
 ---
 
-## 🚀 Quick Start (New Computer)
+## 🚀 Quick Start
 
-### Step 1: Install Prerequisites
+### Step 1: Install Docker
 
 | OS | Install |
 |----|---------|
@@ -15,38 +15,44 @@ All configs are **baked into the Docker image** - no setup required.
 | **Windows** | [Docker Desktop](https://www.docker.com/products/docker-desktop) (enable WSL2) |
 | **Linux** | `sudo apt install docker.io docker-compose` |
 
-### Step 2: Clone This Repo
+### Step 2: Clone & Build
 
 ```bash
-git clone https://github.com/yourusername/portable-ml-lab.git
-cd portable-ml-lab
-```
-
-### Step 3: Set Your Project Folder
-
-Edit `.env` file:
-```bash
-# macOS/Linux
-HOST_PROJECTS_PATH=~/Desktop/my-project
-
-# Windows (use forward slashes)
-HOST_PROJECTS_PATH=C:/Users/YourName/Desktop/my-project
-```
-
-### Step 4: Build & Start
-
-```bash
-# Build the image (first time only, takes ~5 min)
+git clone https://github.com/A6UD3L0/pc_lx_mc_config.git
+cd pc_lx_mc_config
 docker compose build
+```
 
-# Start container
-docker compose up -d
+### Step 3: Run with Your Project
 
-# Start tmux session
-docker compose exec -u dev mlops-env tmuxp load -d /home/dev/.config/tmuxp/lab.yaml
+**Linux / macOS:**
+```bash
+./start.sh ~/Desktop/my-project
+```
 
-# Attach to IDE
-docker compose exec -u dev mlops-env tmux attach -t mlops
+**Windows (PowerShell):**
+```powershell
+.\start.bat C:\Users\YourName\Desktop\my-project
+```
+
+**That's it!** Your project folder is now available at `/projects` inside the container.
+
+---
+
+## 📖 Usage Examples
+
+```bash
+# Open a specific project
+./start.sh ~/code/ml-experiment
+
+# Open current directory
+./start.sh .
+
+# Show help
+./start.sh --help
+
+# Just reattach (uses last project path)
+./start.sh
 ```
 
 **Done!** You're now in the IDE.
