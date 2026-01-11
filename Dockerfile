@@ -28,10 +28,11 @@ RUN mkdir -p /var/run/sshd && \
     sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config && \
     sed -i 's/#PubkeyAuthentication yes/PubkeyAuthentication yes/' /etc/ssh/sshd_config
 
-# Neovim
+# Neovim (URL format: nvim-linux-x86_64.tar.gz / nvim-linux-arm64.tar.gz)
 RUN ARCH=$(uname -m) && \
-    if [ "$ARCH" = "x86_64" ]; then NVIM_URL="https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz"; \
-    else NVIM_URL="https://github.com/neovim/neovim/releases/latest/download/nvim-linux-arm64.tar.gz"; fi && \
+    if [ "$ARCH" = "x86_64" ]; then NVIM_URL="https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz"; \
+    elif [ "$ARCH" = "aarch64" ]; then NVIM_URL="https://github.com/neovim/neovim/releases/latest/download/nvim-linux-arm64.tar.gz"; \
+    else echo "Unsupported architecture: $ARCH" && exit 1; fi && \
     curl -fsSL -o /tmp/nvim.tar.gz "$NVIM_URL" && \
     mkdir -p /opt/nvim && tar -xzf /tmp/nvim.tar.gz -C /opt/nvim --strip-components=1 && rm /tmp/nvim.tar.gz
 ENV PATH="/opt/nvim/bin:$PATH"
