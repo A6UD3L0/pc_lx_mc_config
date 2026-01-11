@@ -1,0 +1,13 @@
+# Ensure shell scripts always have LF line endings
+*.sh text eol=lf
+entrypoint.sh text eol=lf
+
+# Keep batch files with CRLF
+*.bat text eol=crlf
+
+# Other text files - auto
+*.md text
+*.yml text
+*.yaml text
+*.json text
+Dockerfile text

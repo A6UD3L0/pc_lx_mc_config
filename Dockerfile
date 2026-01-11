@@ -119,10 +119,10 @@ RUN git clone --depth 1 https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm 
     nvim --headless "+Lazy! sync" +qa 2>/dev/null || true && \
     nvim --headless -c 'lua require("lazy").load({plugins = {"molten-nvim"}})' -c 'UpdateRemotePlugins' -c 'qa' 2>/dev/null || true
 
-# Entrypoint
+# Entrypoint (convert CRLF to LF for Windows compatibility)
 USER root
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
-RUN chmod +x /usr/local/bin/entrypoint.sh
+RUN sed -i 's/\r$//' /usr/local/bin/entrypoint.sh && chmod +x /usr/local/bin/entrypoint.sh
 
 EXPOSE 22 8888
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
