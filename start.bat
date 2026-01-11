@@ -31,10 +31,12 @@ if %errorlevel%==0 (
     goto :gpu_detected
 )
 
-REM Check for AMD GPU via WMIC
-for /f "tokens=*" %%i in ('wmic path win32_videocontroller get name 2^>nul ^| findstr /i "AMD Radeon"') do (
-    set "GPU_TYPE=amd"
-    goto :gpu_detected
+REM Check for AMD GPU via PowerShell (WMIC is deprecated)
+for /f "tokens=*" %%i in ('powershell -NoProfile -Command "Get-CimInstance -ClassName Win32_VideoController | Where-Object { $_.Name -match 'AMD|Radeon' } | Select-Object -First 1 -ExpandProperty Name" 2^>nul') do (
+    if not "%%i"=="" (
+        set "GPU_TYPE=amd"
+        goto :gpu_detected
+    )
 )
 
 :gpu_detected
