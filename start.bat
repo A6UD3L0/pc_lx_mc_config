@@ -19,6 +19,26 @@ set "SCRIPT_DIR=%~dp0"
 
 cd /d "%SCRIPT_DIR%"
 
+REM =============================================================================
+REM GPU Auto-Detection: nvidia, amd, or cpu
+REM =============================================================================
+set "GPU_TYPE=cpu"
+
+REM Check for NVIDIA GPU
+nvidia-smi >nul 2>&1
+if %errorlevel%==0 (
+    set "GPU_TYPE=nvidia"
+    goto :gpu_detected
+)
+
+REM Check for AMD GPU via WMIC
+for /f "tokens=*" %%i in ('wmic path win32_videocontroller get name 2^>nul ^| findstr /i "AMD Radeon"') do (
+    set "GPU_TYPE=amd"
+    goto :gpu_detected
+)
+
+:gpu_detected
+
 REM Show help
 if "%PROJECT_PATH%"=="-h" goto :showhelp
 if "%PROJECT_PATH%"=="--help" goto :showhelp
@@ -62,6 +82,7 @@ if not exist .env (
 echo ╔═══════════════════════════════════════════╗
 echo ║     Portable ML Lab - Docker IDE          ║
 echo ╚═══════════════════════════════════════════╝
+echo Detected GPU: %GPU_TYPE%
 
 REM Update project path if provided
 if not "%PROJECT_PATH%"=="" (
@@ -87,7 +108,8 @@ docker compose ps --status running 2>nul | findstr /C:"mlops-env" >nul
 if %errorlevel%==0 (
     echo ✓ Container already running
 ) else (
-    echo 🔨 Starting container...
+    echo Building/starting container [GPU_TYPE=%GPU_TYPE%]...
+    docker compose build
     docker compose up -d
 )
 

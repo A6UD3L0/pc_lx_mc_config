@@ -1,8 +1,15 @@
 # Portable ML Lab - Multi-Architecture Dockerfile
+# Build args: GPU_TYPE=cpu (default), nvidia, or amd
 ARG TARGETARCH
-FROM nvidia/cuda:12.4.1-devel-ubuntu22.04 AS base-amd64
-FROM ubuntu:22.04 AS base-arm64
-FROM base-${TARGETARCH} AS base
+ARG GPU_TYPE=cpu
+
+# Base images for different GPU types
+FROM nvidia/cuda:12.4.1-devel-ubuntu22.04 AS base-nvidia
+FROM rocm/dev-ubuntu-22.04:6.0 AS base-amd
+FROM ubuntu:22.04 AS base-cpu
+
+# Select base image based on GPU_TYPE
+FROM base-${GPU_TYPE} AS base
 
 ENV DEBIAN_FRONTEND=noninteractive \
     LANG=en_US.UTF-8 \
@@ -55,12 +62,28 @@ ENV UV_INSTALL_DIR="/opt/uv" \
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 ENV PATH="/opt/venv/bin:/opt/uv:$PATH"
 
+# Re-declare ARG after FROM (Docker requirement)
+ARG GPU_TYPE=cpu
+
+# Base Python packages (no GPU deps)
 RUN /opt/uv/uv python install 3.11 && \
     /opt/uv/uv venv $VIRTUAL_ENV --python 3.11 && \
     /opt/uv/uv pip install --python $VIRTUAL_ENV/bin/python \
     pynvim jupyter_client ipykernel jupyterlab jupyter-console ipywidgets cairosvg matplotlib \
-    basedpyright kedro dvc torch numpy pandas scikit-learn ruff tmuxp \
+    basedpyright kedro dvc numpy pandas scikit-learn ruff tmuxp \
     mlflow tensorboard wandb
+
+# PyTorch: Install based on GPU_TYPE (nvidia=CUDA, amd=ROCm, cpu=CPU-only)
+RUN if [ "$GPU_TYPE" = "nvidia" ]; then \
+        echo "Installing PyTorch with CUDA support..." && \
+        /opt/uv/uv pip install --python $VIRTUAL_ENV/bin/python torch torchvision torchaudio; \
+    elif [ "$GPU_TYPE" = "amd" ]; then \
+        echo "Installing PyTorch with ROCm support (AMD GPU)..." && \
+        /opt/uv/uv pip install --python $VIRTUAL_ENV/bin/python torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm6.0; \
+    else \
+        echo "Installing PyTorch CPU-only (fastest build)..." && \
+        /opt/uv/uv pip install --python $VIRTUAL_ENV/bin/python torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu; \
+    fi
 
 RUN python -m ipykernel install --name "pde-kernel" --display-name "PDE Python 3.11"
 

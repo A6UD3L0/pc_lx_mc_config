@@ -20,6 +20,49 @@ export MSYS_NO_PATHCONV=1
 export MSYS2_ARG_CONV_EXCL="*"
 
 PROJECT_PATH="${1:-}"
+
+# =============================================================================
+# GPU Auto-Detection: nvidia, amd, or cpu
+# =============================================================================
+detect_gpu() {
+    # Check for NVIDIA GPU
+    if command -v nvidia-smi &> /dev/null && nvidia-smi &> /dev/null; then
+        echo "nvidia"
+        return
+    fi
+    
+    # Check for AMD GPU (Linux)
+    if [ -d "/sys/class/drm" ]; then
+        if ls /sys/class/drm/card*/device/vendor 2>/dev/null | xargs cat 2>/dev/null | grep -q "0x1002"; then
+            echo "amd"
+            return
+        fi
+    fi
+    
+    # Check for AMD GPU (macOS - no ROCm support, use CPU)
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        if system_profiler SPDisplaysDataType 2>/dev/null | grep -qi "AMD"; then
+            echo "cpu"  # macOS AMD uses Metal, not ROCm
+            return
+        fi
+    fi
+    
+    # Check via lspci (Linux)
+    if command -v lspci &> /dev/null; then
+        if lspci 2>/dev/null | grep -i "vga\|3d\|display" | grep -qi "nvidia"; then
+            echo "nvidia"
+            return
+        elif lspci 2>/dev/null | grep -i "vga\|3d\|display" | grep -qi "amd\|radeon"; then
+            echo "amd"
+            return
+        fi
+    fi
+    
+    echo "cpu"
+}
+
+# Detect GPU and export
+export GPU_TYPE=$(detect_gpu)
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 # Show help
@@ -66,6 +109,7 @@ NC='\033[0m'
 echo -e "${BLUE}╔═══════════════════════════════════════════╗${NC}"
 echo -e "${BLUE}║     🧪 Portable ML Lab - Docker IDE       ║${NC}"
 echo -e "${BLUE}╚═══════════════════════════════════════════╝${NC}"
+echo -e "${GREEN}🖥️  Detected GPU: ${GPU_TYPE}${NC}"
 
 # Update project path if provided
 if [ -n "$PROJECT_PATH" ]; then
@@ -111,7 +155,8 @@ fi
 if docker compose ps --status running 2>/dev/null | grep -q mlops-env; then
     echo -e "${GREEN}✓ Container already running${NC}"
 else
-    echo -e "${BLUE}🔨 Starting container...${NC}"
+    echo -e "${BLUE}🔨 Building/starting container (GPU_TYPE=${GPU_TYPE})...${NC}"
+    docker compose build
     docker compose up -d
 fi
 
