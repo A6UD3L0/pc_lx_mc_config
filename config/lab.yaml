@@ -1,0 +1,45 @@
+session_name: mlops
+start_directory: /projects
+
+windows:
+  # Window 1: Full-screen Neovim editor
+  # - Use :terminal for shell access inside Neovim
+  # - Use Molten (Space m) for Python execution
+  - window_name: Editor
+    panes:
+      - shell_command: "nvim ."
+
+  # Window 2: MLOps Pipeline tools
+  # - Left: DVC for data versioning
+  # - Right: Kedro for ML pipelines
+  - window_name: Pipeline
+    layout: even-horizontal
+    panes:
+      - shell_command: "dvc version; zsh"
+      - shell_command: "kedro --version; zsh"
+
+  # Window 3: Experiment Tracking
+  # - Left: MLflow UI (run: mlflow ui)
+  # - Middle: TensorBoard (run: tensorboard --logdir=logs)
+  # - Right: Shell for W&B / commands
+  - window_name: Experiments
+    layout: even-horizontal
+    panes:
+      - shell_command: "echo '=== MLflow ===' && echo 'Start: mlflow ui --port 5000' && echo 'Track: mlflow.log_param() / log_metric()' && zsh"
+      - shell_command: "echo '=== TensorBoard ===' && echo 'Start: tensorboard --logdir=logs --port 6006' && echo 'View: http://localhost:6006' && zsh"
+      - shell_command: "echo '=== Weights & Biases ===' && echo 'Login: wandb login' && echo 'Init: wandb.init(project=\"my-project\")' && zsh"
+
+  # Window 4: Git version control
+  # - Lazygit TUI for all git operations
+  - window_name: Git
+    panes:
+      - shell_command: "lazygit"
+
+  # Window 5: System monitoring
+  # - Top: Shell for logs, commands
+  # - Bottom: htop for process monitoring
+  - window_name: Logs
+    layout: even-vertical
+    panes:
+      - shell_command: "zsh"
+      - shell_command: "htop"

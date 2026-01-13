@@ -1,0 +1,34 @@
+session_name: mlops
+
+windows:
+  # Window 1: Full-screen Neovim editor
+  - window_name: Editor
+    panes:
+      - shell_command: "nvim ."
+
+  # Window 2: MLOps Pipeline tools
+  - window_name: Pipeline
+    layout: even-horizontal
+    panes:
+      - shell_command: "dvc version; zsh"
+      - shell_command: "kedro --version; zsh"
+
+  # Window 3: Experiment Tracking
+  - window_name: Experiments
+    layout: even-horizontal
+    panes:
+      - shell_command: "echo '=== MLflow ===' && echo 'Start: mlflow ui --port 5000' && echo 'Track: mlflow.log_param() / log_metric()' && zsh"
+      - shell_command: "echo '=== TensorBoard ===' && echo 'Start: tensorboard --logdir=logs --port 6006' && echo 'View: http://localhost:6006' && zsh"
+      - shell_command: "echo '=== Weights & Biases ===' && echo 'Login: wandb login' && echo 'Init: wandb.init(project=\"my-project\")' && zsh"
+
+  # Window 4: Git version control
+  - window_name: Git
+    panes:
+      - shell_command: "lazygit"
+
+  # Window 5: System monitoring
+  - window_name: Logs
+    layout: even-vertical
+    panes:
+      - shell_command: "zsh"
+      - shell_command: "htop"
