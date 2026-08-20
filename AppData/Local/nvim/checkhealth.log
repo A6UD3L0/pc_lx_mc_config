@@ -1,0 +1,467 @@
+
+==============================================================================
+blink.cmp:                                                                1 ⚠️
+
+System ~
+- ✅ OK curl is installed
+- ✅ OK git is installed
+- ✅ OK Your system is supported by pre-built binaries (x86_64-pc-windows-msvc)
+- ✅ OK blink_cmp_fuzzy lib is downloaded/built
+
+Sources ~
+- ⚠️ WARNING Some providers may show up as "disabled" but are enabled dynamically (e.g. cmdline)
+
+Default sources ~
+- lsp (blink.cmp.sources.lsp)
+- path (blink.cmp.sources.path)
+- snippets (blink.cmp.sources.snippets)
+- buffer (blink.cmp.sources.buffer)
+
+Cmdline sources ~
+- buffer (blink.cmp.sources.buffer)
+- cmdline (blink.cmp.sources.cmdline)
+
+Disabled sources ~
+- lazydev (lazydev.integrations.blink)
+- codecompanion (codecompanion.providers.completion.blink)
+- omni (blink.cmp.sources.complete_func)
+
+==============================================================================
+codecompanion:                                                            2 ⚠️
+
+- Neovim version: 0.12.4
+- Log file: C:/Users/User/AppData/Local/nvim-data/codecompanion.log
+
+Dependencies: ~
+- ✅ OK plenary.nvim installed
+
+Tree-sitter parsers: ~
+- ✅ OK markdown parser installed
+- ✅ OK markdown_inline parser installed
+- ✅ OK yaml parser installed
+
+Libraries: ~
+- ✅ OK curl installed
+- ⚠️ WARNING file not found
+- ✅ OK rg installed
+- ⚠️ WARNING sqlite3 not found
+
+==============================================================================
+lazy:                                                               2 ⚠️  1 ❌
+
+lazy.nvim ~
+- {lazy.nvim} version `11.17.5`
+- ✅ OK {git} `version 2.55.0.windows.4`
+- ✅ OK no existing packages found by other package managers
+- ✅ OK packer_compiled.lua not found
+
+luarocks ~
+- checking `hererocks` installation
+- ✅ OK no plugins require `luarocks`, so you can ignore any warnings below
+- ✅ OK {python} `Python 3.12.10`
+- ❌ ERROR {C:/Users/User/AppData/Local/nvim-data/lazy-rocks/hererocks/bin/luarocks} not installed
+- ⚠️ WARNING {C:/Users/User/AppData/Local/nvim-data/lazy-rocks/hererocks/bin/lua} version `5.1` not installed
+- ⚠️ WARNING Lazy won't be able to install plugins that require `luarocks`.
+  Here's what you can do:
+   - fix your `luarocks` installation
+   - disable *hererocks* with `opts.rocks.hererocks = false`
+   - disable `luarocks` support completely with `opts.rocks.enabled = false`
+
+==============================================================================
+lazyvim:                                                                    ✅
+
+LazyVim ~
+- ✅ OK Using Neovim >= 0.11.2
+- ✅ OK `git` is installed
+- ✅ OK `rg` is installed
+- ✅ OK `fd` is installed
+- ✅ OK `lazygit` is installed
+- ✅ OK `fzf` is installed
+- ✅ OK `curl` is installed
+
+LazyVim nvim-treesitter ~
+- ✅ OK `C compiler` is installed
+- ✅ OK `curl` is installed
+- ✅ OK `tar` is installed
+- ✅ OK `tree-sitter (CLI)` is installed
+
+==============================================================================
+mason:                                                                   13 ⚠️
+
+mason.nvim ~
+- ✅ OK mason.nvim version v2.3.1
+- ✅ OK PATH: prepend
+- ✅ OK Providers: 
+    mason.providers.registry-api
+    mason.providers.client
+- ✅ OK neovim version >= 0.10.0
+
+mason.nvim [Registries] ~
+- ✅ OK Registry `github.com/mason-org/mason-registry version: 2026-08-14-furry-back` is installed.
+- ✅ OK Registry `SynthesizedRegistrySource` is installed.
+
+mason.nvim [Core utils] ~
+- ⚠️ WARNING unzip: not available
+  - ADVICE:
+    - spawn: unzip failed with exit code - and signal -. Could not find executable "unzip" in PATH.
+
+- ⚠️ WARNING wget: not available
+  - ADVICE:
+    - spawn: wget failed with exit code - and signal -. Could not find executable "wget" in PATH.
+
+- ✅ OK curl: `curl 8.21.0 (Windows) libcurl/8.21.0 Schannel zlib/1.3.2 WinIDN WinLDAP`
+- ⚠️ WARNING gzip: not available
+  - ADVICE:
+    - spawn: gzip failed with exit code - and signal -. Could not find executable "gzip" in PATH.
+
+- ✅ OK tar: `bsdtar 3.8.4 - libarchive 3.8.4 zlib/1.2.13.1-motley liblzma/5.8.1 bz2lib/1.0.8 libzstd/1.5.7 cng/2.0 libb2/bundled `
+- ✅ OK pwsh: `7.6.4 Microsoft Windows 10.0.26200 Win32NT`
+- ⚠️ WARNING 7z: not available
+  - ADVICE:
+    - spawn: 7z failed with exit code - and signal -. Could not find executable "7z" in PATH.
+
+
+mason.nvim [Languages] ~
+- ⚠️ WARNING Go: not available
+  - ADVICE:
+    - spawn: go failed with exit code - and signal -. Could not find executable "go" in PATH.
+
+- ⚠️ WARNING luarocks: not available
+  - ADVICE:
+    - spawn: luarocks failed with exit code - and signal -. Could not find executable "luarocks" in PATH.
+
+- ⚠️ WARNING Ruby: not available
+  - ADVICE:
+    - spawn: ruby failed with exit code - and signal -. Could not find executable "ruby" in PATH.
+
+- ⚠️ WARNING RubyGem: not available
+  - ADVICE:
+    - spawn: gem failed with exit code - and signal -. Could not find executable "gem" in PATH.
+
+- ⚠️ WARNING Composer: not available
+  - ADVICE:
+    - spawn: composer failed with exit code - and signal -. Could not find executable "composer" in PATH.
+
+- ⚠️ WARNING PHP: not available
+  - ADVICE:
+    - spawn: php failed with exit code - and signal -. Could not find executable "php" in PATH.
+
+- ⚠️ WARNING javac: not available
+  - ADVICE:
+    - spawn: javac failed with exit code - and signal -. Could not find executable "javac" in PATH.
+
+- ⚠️ WARNING java: not available
+  - ADVICE:
+    - spawn: java failed with exit code - and signal -. Could not find executable "java" in PATH.
+
+- ⚠️ WARNING julia: not available
+  - ADVICE:
+    - spawn: julia failed with exit code - and signal -. Could not find executable "julia" in PATH.
+
+- ✅ OK cargo: `cargo 1.97.1 (c980f4866 2026-06-30)`
+- ✅ OK node: `v24.19.0`
+- ✅ OK python: `Python 3.12.10`
+- ✅ OK npm: `11.17.0`
+- ✅ OK pip: `pip 25.0.1 from C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\site-packages\pip (python 3.12)`
+- ✅ OK python venv: `Ok`
+
+==============================================================================
+nvim-treesitter:                                                            ✅
+
+Requirements ~
+- ✅ OK Neovim was compiled with tree-sitter runtime ABI version 15 (required >=13).
+- ✅ OK tree-sitter-cli 0.26.12 (C:\Users\User\AppData\Local\nvim-data\mason\bin\tree-sitter.CMD)
+- ✅ OK tar 3.8.4 (C:\WINDOWS\system32\tar.EXE)
+- ✅ OK curl 8.21.0 (C:\WINDOWS\system32\curl.EXE)
+  curl 8.21.0 (Windows) libcurl/8.21.0 Schannel zlib/1.3.2 WinIDN WinLDAP
+  Release-Date: 2026-06-24
+  Protocols: dict file ftp ftps gopher gophers http https imap imaps ipfs ipns ldap ldaps mqtt mqtts pop3 pop3s smtp smtps telnet tftp ws wss
+  Features: alt-svc AsynchDNS HSTS HTTPS-proxy IDN IPv6 Kerberos Largefile libz SPNEGO SSL SSPI threadsafe Unicode UnixSockets
+
+OS Info ~
+- sysname: Windows_NT
+- version: Windows 11 Pro
+- release: 10.0.26200
+- machine: x86_64
+
+Install directory for parsers and queries ~
+- C:/Users/User/AppData/Local/nvim-data/site
+- ✅ OK is writable.
+- ✅ OK is in runtimepath.
+
+Installed languages     H L F I J ~
+- bash                  ✓ ✓ ✓ ✓ ✓
+- c                     ✓ ✓ ✓ ✓ ✓
+- diff                  ✓ . ✓ . ✓
+- dtd                   ✓ ✓ ✓ . ✓
+- ecma
+- git_config            ✓ . ✓ . ✓
+- git_rebase            ✓ . . . ✓
+- gitattributes         ✓ ✓ . . ✓
+- gitcommit             ✓ . . . ✓
+- gitignore             ✓ . . . ✓
+- html                  ✓ ✓ ✓ ✓ ✓
+- html_tags
+- javascript            ✓ ✓ ✓ ✓ ✓
+- jsdoc                 ✓ . . . .
+- json                  ✓ ✓ ✓ ✓ ✓
+- jsx
+- lua                   ✓ ✓ ✓ ✓ ✓
+- luadoc                ✓ . . . .
+- luap                  ✓ . . . .
+- markdown              ✓ . ✓ ✓ ✓
+- markdown_inline       ✓ . . . ✓
+- ninja                 ✓ . ✓ ✓ ✓
+- printf                ✓ . . . .
+- python                ✓ ✓ ✓ ✓ ✓
+- query                 ✓ ✓ ✓ ✓ ✓
+- regex                 ✓ . . . .
+- rst                   ✓ ✓ . . ✓
+- toml                  ✓ ✓ ✓ ✓ ✓
+- tsx                   ✓ ✓ ✓ ✓ ✓
+- typescript            ✓ ✓ ✓ ✓ ✓
+- vim                   ✓ ✓ ✓ . ✓
+- vimdoc                ✓ . . . ✓
+- xml                   ✓ ✓ ✓ ✓ ✓
+- yaml                  ✓ ✓ ✓ ✓ ✓
+
+  Legend: [H]ighlights, [L]ocals, [F]olds, [I]ndents, In[J]ections ~
+
+==============================================================================
+snacks:                                                             5 ⚠️  7 ❌
+
+Snacks ~
+- ✅ OK setup called
+
+Snacks.bigfile ~
+- ✅ OK setup {enabled}
+
+Snacks.dashboard ~
+- ✅ OK setup {enabled}
+- ❌ ERROR setup did not run
+
+Snacks.explorer ~
+- ⚠️ WARNING setup {disabled}
+- ✅ OK 'powershell' `En línea: 1 Carácter: 3`
+- ✅ OK System trash command found
+
+Snacks.image ~
+- ⚠️ WARNING setup {disabled}
+- ✅ OK 'wezterm' `wezterm 20240203-110809-5046fc22`
+- ✅ OK 'magick' `Version: ImageMagick 7.1.2-29 Q16-HDRI x64 360eda5:20260727 https://imagemagick.org`
+- ✅ OK Terminal Dimensions:
+  - {size}: `720` x `432` pixels
+  - {scale}: `1.12`
+  - {cell}: `9` x `18` pixels
+- ❌ ERROR Tool not found: 'gs'
+- ⚠️ WARNING `gs` is required to render PDF files
+- ❌ ERROR None of the tools found: 'tectonic', 'pdflatex'
+- ⚠️ WARNING `tectonic` or `pdflatex` is required to render LaTeX math expressions
+- ✅ OK 'mmdc' `11.16.0`
+- ✅ OK Mermaid diagrams are supported
+- ❌ ERROR your terminal does not support the kitty graphics protocol
+- supported terminals: `kitty`, `wezterm`, `ghostty`
+
+Snacks.input ~
+- ✅ OK setup {enabled}
+- ❌ ERROR `vim.ui.input` is not set to `Snacks.input`
+
+Snacks.lazygit ~
+- ✅ OK {lazygit} installed
+
+Snacks.notifier ~
+- ✅ OK setup {enabled}
+- ❌ ERROR is not ready
+
+Snacks.picker ~
+- ✅ OK setup {enabled}
+- ❌ ERROR `vim.ui.select` is not set to `Snacks.picker.select`
+- ✅ OK Available Treesitter languages:
+    `regex`
+- ✅ OK 'git' `git version 2.55.0.windows.4`
+- ✅ OK 'rg' `ripgrep 15.2.0 (rev e89fff89ac)`
+- ✅ OK `Snacks.picker.grep()` is available
+- ✅ OK 'fd' `fd 10.4.2`
+- ✅ OK `Snacks.picker.files()` is available
+- ✅ OK `Snacks.picker.explorer()` is available
+- ✅ OK `SQLite3` is available
+
+Snacks.quickfile ~
+- ✅ OK setup {enabled}
+
+Snacks.scope ~
+- ✅ OK setup {enabled}
+
+Snacks.scroll ~
+- ✅ OK setup {enabled}
+
+Snacks.statuscolumn ~
+- ⚠️ WARNING setup {disabled}
+
+Snacks.terminal ~
+- ✅ OK shell configured
+  - `vim.o.shell`: cmd.exe
+  - `parsed`: { "cmd.exe" }
+
+Snacks.toggle ~
+- ✅ OK {which-key} is installed
+
+Snacks.words ~
+- ✅ OK setup {enabled}
+
+==============================================================================
+vim.deprecated:                                                             ✅
+
+- ✅ OK No deprecated functions detected
+
+==============================================================================
+vim.health:                                                                 ✅
+
+System Info ~
+- ✅ OK Up to date (0.12.4)
+- Nvim version: `v0.12.4` 
+- Operating system: Windows_NT 10.0.26200
+- Terminal: unknown
+- $TERM: unknown
+
+Configuration ~
+- ✅ OK no issues found
+
+Runtime ~
+- ✅ OK $VIMRUNTIME: C:\Program Files\Neovim\share/nvim/runtime
+
+Performance ~
+- ✅ OK Build type: Release
+
+Remote Plugins ~
+- ✅ OK Up to date
+
+External Tools ~
+- ✅ OK ripgrep 15.2.0 (rev e89fff89ac) (C:\Users\User\AppData\Local\Microsoft\WinGet\Packages\BurntSushi.ripgrep.MSVC_Microsoft.Winget.Source_8wekyb3d8bbwe\ripgrep-15.2.0-x86_64-pc-windows-msvc\rg.EXE)
+- ✅ OK vim.ui.open: handler found (cmd.exe)
+- ✅ OK git version 2.55.0.windows.4 (C:\Program Files\Git\cmd\git.EXE)
+- ✅ OK curl 8.21.0 (C:\WINDOWS\system32\curl.EXE)
+  curl 8.21.0 (Windows) libcurl/8.21.0 Schannel zlib/1.3.2 WinIDN WinLDAP
+  Release-Date: 2026-06-24
+  Protocols: dict file ftp ftps gopher gophers http https imap imaps ipfs ipns ldap ldaps mqtt mqtts pop3 pop3s smtp smtps telnet tftp ws wss
+  Features: alt-svc AsynchDNS HSTS HTTPS-proxy IDN IPv6 Kerberos Largefile libz SPNEGO SSL SSPI threadsafe Unicode UnixSockets
+
+==============================================================================
+vim.lsp:                                                                    ✅
+
+- LSP log level : WARN
+- Log path: C:/Users/User/AppData/Local/nvim-data/lsp.log
+- Log size: 0 KB
+
+vim.lsp: Active Features ~
+
+vim.lsp: Active Clients ~
+- No active clients
+
+vim.lsp: Enabled Configurations ~
+
+vim.lsp: File Watcher ~
+- file watching "(workspace/didChangeWatchedFiles)" disabled on all clients
+
+vim.lsp: Position Encodings ~
+- No active clients
+
+==============================================================================
+vim.pack:                                                                   ✅
+
+vim.pack: basics ~
+- ✅ OK `vim.pack` is not used
+
+==============================================================================
+vim.provider:                                                             5 ⚠️
+
+Clipboard (optional) ~
+- ✅ OK Clipboard tool found: win32yank
+
+Node.js provider (optional) ~
+- Node.js: 24.19.0
+- Nvim node.js host: C:\Users\User\AppData\Roaming\npm\node_modules/neovim/bin/cli.js
+- ✅ OK Latest "neovim" npm/yarn/pnpm package is installed: 5.4.0
+
+
+Perl provider (optional) ~
+- ⚠️ WARNING No perl executable found
+  - ADVICE:
+    - See :help |provider-perl| for more information.
+    - You can disable this provider (and warning) by adding `let g:loaded_perl_provider = 0` to your init.vim
+- ⚠️ WARNING No usable perl executable found
+
+Python 3 provider (optional) ~
+- ⚠️ WARNING No Python executable found that can `import neovim`. Using the first available executable for diagnostics.
+- ⚠️ WARNING Could not load Python :
+  python3 not found in search path or not executable.
+  python3.14 not found in search path or not executable.
+  python3.13 not found in search path or not executable.
+  python3.12 not found in search path or not executable.
+  python3.11 not found in search path or not executable.
+  python3.10 not found in search path or not executable.
+  python3.9 not found in search path or not executable.
+  C:\Users\User\AppData\Local\Programs\Python\Python312\python.EXE does not have the "neovim" module.
+  - ADVICE:
+    - See :help |provider-python| for more information.
+    - You can disable this provider (and warning) by adding `let g:loaded_python3_provider = 0` to your init.vim
+- Executable: Not found
+
+Python virtualenv ~
+- ✅ OK no $VIRTUAL_ENV
+
+Ruby provider (optional) ~
+- ⚠️ WARNING `ruby` and `gem` must be in $PATH.
+  - ADVICE:
+    - Install Ruby and verify that `ruby` and `gem` commands work.
+
+==============================================================================
+vim.treesitter:                                                             ✅
+
+Treesitter features ~
+- Treesitter ABI support: min 13, max 15
+- WASM parser support: false
+
+Treesitter parsers ~
+- ✅ OK Parser: bash                      ABI: 15, path: C:\Users\User\AppData\Local\nvim-data\site\parser\bash.so
+- ✅ OK Parser: c                         ABI: 15, path: C:\Users\User\AppData\Local\nvim-data\site\parser\c.so
+- ✅ OK Parser: c                    (not loaded), path: C:\Program Files\Neovim\lib\nvim\parser\c.dll
+- ✅ OK Parser: css                       ABI: 15, path: C:\Users\User\AppData\Local\nvim-data\site\parser\css.so
+- ✅ OK Parser: diff                      ABI: 15, path: C:\Users\User\AppData\Local\nvim-data\site\parser\diff.so
+- ✅ OK Parser: dtd                       ABI: 14, path: C:\Users\User\AppData\Local\nvim-data\site\parser\dtd.so
+- ✅ OK Parser: git_config                ABI: 14, path: C:\Users\User\AppData\Local\nvim-data\site\parser\git_config.so
+- ✅ OK Parser: git_rebase                ABI: 15, path: C:\Users\User\AppData\Local\nvim-data\site\parser\git_rebase.so
+- ✅ OK Parser: gitattributes             ABI: 14, path: C:\Users\User\AppData\Local\nvim-data\site\parser\gitattributes.so
+- ✅ OK Parser: gitcommit                 ABI: 15, path: C:\Users\User\AppData\Local\nvim-data\site\parser\gitcommit.so
+- ✅ OK Parser: gitignore                 ABI: 13, path: C:\Users\User\AppData\Local\nvim-data\site\parser\gitignore.so
+- ✅ OK Parser: html                      ABI: 14, path: C:\Users\User\AppData\Local\nvim-data\site\parser\html.so
+- ✅ OK Parser: javascript                ABI: 15, path: C:\Users\User\AppData\Local\nvim-data\site\parser\javascript.so
+- ✅ OK Parser: jsdoc                     ABI: 15, path: C:\Users\User\AppData\Local\nvim-data\site\parser\jsdoc.so
+- ✅ OK Parser: json                      ABI: 14, path: C:\Users\User\AppData\Local\nvim-data\site\parser\json.so
+- ✅ OK Parser: lua                       ABI: 15, path: C:\Users\User\AppData\Local\nvim-data\site\parser\lua.so
+- ✅ OK Parser: lua                  (not loaded), path: C:\Program Files\Neovim\lib\nvim\parser\lua.dll
+- ✅ OK Parser: luadoc                    ABI: 15, path: C:\Users\User\AppData\Local\nvim-data\site\parser\luadoc.so
+- ✅ OK Parser: luap                      ABI: 14, path: C:\Users\User\AppData\Local\nvim-data\site\parser\luap.so
+- ✅ OK Parser: markdown                  ABI: 15, path: C:\Users\User\AppData\Local\nvim-data\site\parser\markdown.so
+- ✅ OK Parser: markdown             (not loaded), path: C:\Program Files\Neovim\lib\nvim\parser\markdown.dll
+- ✅ OK Parser: markdown_inline           ABI: 15, path: C:\Users\User\AppData\Local\nvim-data\site\parser\markdown_inline.so
+- ✅ OK Parser: markdown_inline      (not loaded), path: C:\Program Files\Neovim\lib\nvim\parser\markdown_inline.dll
+- ✅ OK Parser: ninja                     ABI: 13, path: C:\Users\User\AppData\Local\nvim-data\site\parser\ninja.so
+- ✅ OK Parser: printf                    ABI: 14, path: C:\Users\User\AppData\Local\nvim-data\site\parser\printf.so
+- ✅ OK Parser: python                    ABI: 15, path: C:\Users\User\AppData\Local\nvim-data\site\parser\python.so
+- ✅ OK Parser: query                     ABI: 15, path: C:\Users\User\AppData\Local\nvim-data\site\parser\query.so
+- ✅ OK Parser: query                (not loaded), path: C:\Program Files\Neovim\lib\nvim\parser\query.dll
+- ✅ OK Parser: regex                     ABI: 15, path: C:\Users\User\AppData\Local\nvim-data\site\parser\regex.so
+- ✅ OK Parser: rst                       ABI: 14, path: C:\Users\User\AppData\Local\nvim-data\site\parser\rst.so
+- ✅ OK Parser: toml                      ABI: 14, path: C:\Users\User\AppData\Local\nvim-data\site\parser\toml.so
+- ✅ OK Parser: tsx                       ABI: 14, path: C:\Users\User\AppData\Local\nvim-data\site\parser\tsx.so
+- ✅ OK Parser: typescript                ABI: 14, path: C:\Users\User\AppData\Local\nvim-data\site\parser\typescript.so
+- ✅ OK Parser: vim                       ABI: 15, path: C:\Users\User\AppData\Local\nvim-data\site\parser\vim.so
+- ✅ OK Parser: vim                  (not loaded), path: C:\Program Files\Neovim\lib\nvim\parser\vim.dll
+- ✅ OK Parser: vimdoc                    ABI: 15, path: C:\Users\User\AppData\Local\nvim-data\site\parser\vimdoc.so
+- ✅ OK Parser: vimdoc               (not loaded), path: C:\Program Files\Neovim\lib\nvim\parser\vimdoc.dll
+- ✅ OK Parser: xml                       ABI: 14, path: C:\Users\User\AppData\Local\nvim-data\site\parser\xml.so
+- ✅ OK Parser: yaml                      ABI: 15, path: C:\Users\User\AppData\Local\nvim-data\site\parser\yaml.so
+
+Treesitter queries ~
+
